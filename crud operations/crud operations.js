@@ -36,7 +36,7 @@ function createTable(data) {
     <td>${element.id}</td>
     <td>${element.name}</td>
     <td>${element.email}</td>
-    <td><a class="text-warning" onClick="editUser(${element.id})">Edit</a>
+    <td><a class="text-warning" onClick="GetUserById(${element.id})">Edit</a>
     <a class="text-danger" onClick="deleteUser(${element.id})">Delete</a></td>
      </tr>`;
 
@@ -60,14 +60,14 @@ async function editUser() {
     let name = document.getElementById("name").value;
     let email = document.getElementById("email").value;
     let id = document.getElementById("id").value;
-    (await fetch(apiUrl)) + id,
+    (await fetch(apiUrl + id),
       {
         method: "PUT",
         body: JSON.stringify({ name, email }),
         headers: {
           "Content-Type": "application/json",
         },
-      };
+      });
     alert("User updated");
     document.getElementById("tbody").innerHTML = "";
     document.querySelector("form").reset();
